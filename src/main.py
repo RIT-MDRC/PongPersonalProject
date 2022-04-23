@@ -75,72 +75,72 @@ while True:
             # Score Fail state
 
 
-def motor_Drive(mtr, steps, direction):
-    match (mtr):
-        case 1:
-            # set direction
-            if (direction == 'L' or direction == 'l'):
-                D1.value(1)
-            elif (direction == 'R' or direction == 'r'):
-                D1.value(0)
-
-            # Increment to steps from zero
-            for x in range(0, steps):
-                S1.value(1)
-                sleep(0.001)
-                S1.value(0)
-                sleep(0.001)
-            # Return pins to original state pins
+def motor_Drive(int mtr, int steps, char direction):
+    if(mtr == 1):
+        #set direction
+        if(direction = 'L' OR 'l'):
+            D1.value(1)
+        else if (direction = 'R' OR 'r')
             D1.value(0)
+        
+        #Increment to steps from zero
+        for x in range(0, steps):
+            S1.value(1)
+            sleep(0.001)
             S1.value(0)
-        case 2:
-            # set direction
-            if (direction == 'L' or direction == 'l'):
-                D2.value(1)
-            elif (direction == 'R' or direction == 'r'):
-                D2.value(0)
-
-            # Increment to steps from zero
-            for x in range(0, steps):
-                S2.value(1)
-                sleep(0.001)
-                S2.value(0)
-                sleep(0.001)
-            # Return pins to original state pins
+            sleep(0.001)
+        #Return pins to original state pins    
+        D1.value(0)    
+        S1.value(0)    
+    elif(mtr == 2):
+            #set direction
+        if(direction = 'L' OR 'l'):
+            D2.value(1)
+        else if (direction = 'R' OR 'r')
             D2.value(0)
+        
+        #Increment to steps from zero
+        for x in range(0, steps):
+            S2.value(1)
+            sleep(0.001)
             S2.value(0)
-        case 3:
-            # set direction
-            if (direction == 'L' or direction == 'l'):
-                D3.value(1)
-            elif (direction == 'R' or direction == 'r'):
-                D3.value(0)
-
-            # Increment to steps from zero
-            for x in range(0, steps):
-                S3.value(1)
-                sleep(0.001)
-                S3.value(0)
-                sleep(0.001)
-            # Return pins to original state pins
+            sleep(0.001)
+        #Return pins to original state pins    
+        D2.value(0)    
+        S2.value(0)  
+    elif(mtr == 3):
+            #set direction
+        if(direction = 'L' OR 'l'):
+            D3.value(1)
+        else if (direction = 'R' OR 'r')
             D3.value(0)
+        
+        #Increment to steps from zero
+        for x in range(0, steps):
+            S3.value(1)
+            sleep(0.001)
             S3.value(0)
-        case 4:
-            # set direction
-            if (direction == 'L' or direction == 'l'):
-                D4.value(1)
-            elif (direction == 'R' or direction == 'r'):
-                D4.value(0)
-
-            # Increment to steps from zero
-            for x in range(0, steps):
-                S4.value(1)
-                sleep(0.001)
-                S4.value(0)
-                sleep(0.001)
-            # Return pins to original state pins
+            sleep(0.001)
+        #Return pins to original state pins    
+        D3.value(0)    
+        S3.value(0)  
+    elif(mtr == 4):
+            #set direction
+        if(direction = 'L' OR 'l'):
+            D4.value(1)
+        else if (direction = 'R' OR 'r')
             D4.value(0)
+        
+        #Increment to steps from zero
+        for x in range(0, steps):
+            S4.value(1)
+            sleep(0.001)
             S4.value(0)
+            sleep(0.001)
+        #Return pins to original state pins    
+        D4.value(0)    
+        S4.value(0)  
+        
  def Homing():
     #Zero on Motor 1
     while L1 != 1:
