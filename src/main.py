@@ -141,6 +141,25 @@ def motor_Drive(mtr, steps, direction):
             # Return pins to original state pins
             D4.value(0)
             S4.value(0)
-
+ def Homing():
+    #Zero on Motor 1
+    while L1 != 1:
+        motor_Drive(1, 1, 'L')
+    motor_Drive(1, 2, 'R') 
+    
+    #Zero on Motor 2
+    while L2 != 1:
+        motor_Drive(2, 1, 'L')
+    motor_Drive(2, 2, 'R')  
+    
+    #Zero on Motor 3
+    while L3 != 1:
+        motor_Drive(3, 1, 'R')
+    motor_Drive(3, 2, 'L')  
+    
+    #Zero on Motor 4
+    while L4 != 1:
+        motor_Drive(4, 1, 'R')
+    motor_Drive(4, 2, 'L')
 
 led.low()
