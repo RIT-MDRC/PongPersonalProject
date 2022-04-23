@@ -39,7 +39,9 @@ stepConvertConstant = (25.4)/(0.01*16) #Converts from inches (convert to mm) / (
 fieldWidth = int(7.8 * stepConvertConstant)
 fieldHeight = int(5.5 * stepConvertConstant)
 
-PadHeight = int(2.5 * stepConvertConstant)
+padHeight = int(2.5 * stepConvertConstant)
+leftPadBottomPos = 0
+rightPadBottomPos = 0
 
 ballHeight = int((1 + (3/8)) * stepConvertConstant)
 ballWidth = int(1.5 * stepConvertConstant)
@@ -56,11 +58,23 @@ while True:
         ballIncrementY *= -1
     if (ballY <= 0):
         ballIncrementY *= -1
+#    if (ballX >= fieldWidth):
+#        ballIncrementX *= -1
+#    if (ballX <= 0):
+#        ballIncrementX *= -1
     if (ballX >= fieldWidth):
-        ballIncrementX *= -1
+        if (ballY >= rightPadBottomPos and ballY <= (rightPadBottomPos+padHeight)):
+            ballIncrementX *= -1
+        else:
+            print("Left Score")
+            #Score Fail state
     if (ballX <= 0):
-        ballIncrementX *= -1
+        if (ballY >= leftPadBottomPos and ballY <= (leftPadBottomPos+padHeight)):
+            ballIncrementX *= -1
+        else:
+            print("Right Score")
+            #Score Fail state
 
-
+#4139 West Henre
 
 led.low()
