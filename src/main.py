@@ -78,3 +78,72 @@ while True:
 #4139 West Henre
 
 led.low()
+
+def motor_Drive(int mtr, int steps, char direction):
+
+    match(mtr):
+    
+    case 1:
+        #set direction
+        if(direction = 'L' OR 'l'):
+            D1.value(1)
+        else if (direction = 'R' OR 'r')
+            D1.value(0)
+        
+        #Increment to steps from zero
+        for x in range(0, steps):
+            S1.value(1)
+            sleep(0.001)
+            S1.value(0)
+            sleep(0.001)
+        #Return pins to original state pins    
+        D1.value(0)    
+        S1.value(0)    
+    case 2:
+            #set direction
+        if(direction = 'L' OR 'l'):
+            D2.value(1)
+        else if (direction = 'R' OR 'r')
+            D2.value(0)
+        
+        #Increment to steps from zero
+        for x in range(0, steps):
+            S2.value(1)
+            sleep(0.001)
+            S2.value(0)
+            sleep(0.001)
+        #Return pins to original state pins    
+        D2.value(0)    
+        S2.value(0)  
+    case 3:
+            #set direction
+        if(direction = 'L' OR 'l'):
+            D3.value(1)
+        else if (direction = 'R' OR 'r')
+            D3.value(0)
+        
+        #Increment to steps from zero
+        for x in range(0, steps):
+            S3.value(1)
+            sleep(0.001)
+            S3.value(0)
+            sleep(0.001)
+        #Return pins to original state pins    
+        D3.value(0)    
+        S3.value(0)  
+    case 4:
+            #set direction
+        if(direction = 'L' OR 'l'):
+            D4.value(1)
+        else if (direction = 'R' OR 'r')
+            D4.value(0)
+        
+        #Increment to steps from zero
+        for x in range(0, steps):
+            S4.value(1)
+            sleep(0.001)
+            S4.value(0)
+            sleep(0.001)
+        #Return pins to original state pins    
+        D4.value(0)    
+        S4.value(0)  
