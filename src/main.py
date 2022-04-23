@@ -161,5 +161,19 @@ def motor_Drive(mtr, steps, direction):
     while L4 != 1:
         motor_Drive(4, 1, 'R')
     motor_Drive(4, 2, 'L')
-
+            
+ def set_Point(x, y):
+     if(x > ballX):
+        while(x > ballX):
+            motor_Drive(2, 1, 'L')
+     elif(x < ballX):
+        while(x < ballX):
+            motor_Drive(2, 1, 'R')
+            
+     if(y > ballY):
+        while(y > ballY):
+            motor_Drive(3, 1, 'R')
+     elif(y < ballY):
+        while(y < ballY):
+            motor_Drive(3, 1, 'L')
 led.low()
