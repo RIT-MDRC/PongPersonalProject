@@ -1,10 +1,12 @@
+from time import sleep
 from machine import Pin
-led = Pin(25, Pin.OUT) #Light indicates program running
+
+led = Pin(25, Pin.OUT)  # Light indicates program running
 led.high()
 
 # Pin Init
 
-#Setup output pins, initialize as zero
+# Setup output pins, initialize as zero
 D1 = Pin(14, Pin.OUT)
 D1.value(0)
 S1 = Pin(15, Pin.OUT)
@@ -21,20 +23,21 @@ S2 = Pin(20, Pin.OUT)
 S2.value(0)
 D2 = Pin(21, Pin.OUT)
 D2.value(0)
-#setup input pins, no pullups needed
+# setup input pins, no pullups needed
 L4 = Pin(13, Pin.IN)
 L3 = Pin(12, Pin.IN)
 L2 = Pin(11, Pin.IN)
 L1 = Pin(10, Pin.IN)
 
-#End Pin Init
+# End Pin Init
 
 # Simulation Init
 
 # All Sizes measured in steps
-#Instruction every 7.5 Nanoseconds *Some resrictions apply, Results may vary, batteries not included
+# Instruction every 7.5 Nanoseconds *Some resrictions apply, Results may vary, batteries not included
 
-stepConvertConstant = (25.4)/(0.01*16) #Converts from inches (convert to mm) / (mm per step * 16 for no micro step mode)
+stepConvertConstant = (25.4) / (
+            0.01 * 16)  # Converts from inches (convert to mm) / (mm per step * 16 for no micro step mode)
 
 fieldWidth = int(7.8 * stepConvertConstant)
 fieldHeight = int(5.5 * stepConvertConstant)
@@ -43,107 +46,101 @@ padHeight = int(2.5 * stepConvertConstant)
 leftPadBottomPos = 0
 rightPadBottomPos = 0
 
-ballHeight = int((1 + (3/8)) * stepConvertConstant)
+ballHeight = int((1 + (3 / 8)) * stepConvertConstant)
 ballWidth = int(1.5 * stepConvertConstant)
 
-#End simulation init
+# End simulation init
 
-ballX = int(fieldWidth/2)
-ballY = int(fieldHeight/2)
+ballX = int(fieldWidth / 2)
+ballY = int(fieldHeight / 2)
 ballIncrementX = 1
 ballIncrementY = 1
 
 while True:
-    if (ballY>=fieldHeight):
+    if (ballY >= fieldHeight):
         ballIncrementY *= -1
     if (ballY <= 0):
         ballIncrementY *= -1
-#    if (ballX >= fieldWidth):
-#        ballIncrementX *= -1
-#    if (ballX <= 0):
-#        ballIncrementX *= -1
     if (ballX >= fieldWidth):
-        if (ballY >= rightPadBottomPos and ballY <= (rightPadBottomPos+padHeight)):
+        if (ballY >= rightPadBottomPos and ballY <= (rightPadBottomPos + padHeight)):
             ballIncrementX *= -1
         else:
             print("Left Score")
-            #Score Fail state
+            # Score Fail state
     if (ballX <= 0):
-        if (ballY >= leftPadBottomPos and ballY <= (leftPadBottomPos+padHeight)):
+        if (ballY >= leftPadBottomPos and ballY <= (leftPadBottomPos + padHeight)):
             ballIncrementX *= -1
         else:
             print("Right Score")
-            #Score Fail state
+            # Score Fail state
 
-#4139 West Henre
+
+def motor_Drive(mtr, steps, direction):
+    match (mtr):
+        case 1:
+            # set direction
+            if (direction == 'L' or direction == 'l'):
+                D1.value(1)
+            elif (direction == 'R' or direction == 'r'):
+                D1.value(0)
+
+            # Increment to steps from zero
+            for x in range(0, steps):
+                S1.value(1)
+                sleep(0.001)
+                S1.value(0)
+                sleep(0.001)
+            # Return pins to original state pins
+            D1.value(0)
+            S1.value(0)
+        case 2:
+            # set direction
+            if (direction == 'L' or direction == 'l'):
+                D2.value(1)
+            elif (direction == 'R' or direction == 'r'):
+                D2.value(0)
+
+            # Increment to steps from zero
+            for x in range(0, steps):
+                S2.value(1)
+                sleep(0.001)
+                S2.value(0)
+                sleep(0.001)
+            # Return pins to original state pins
+            D2.value(0)
+            S2.value(0)
+        case 3:
+            # set direction
+            if (direction == 'L' or direction == 'l'):
+                D3.value(1)
+            elif (direction == 'R' or direction == 'r'):
+                D3.value(0)
+
+            # Increment to steps from zero
+            for x in range(0, steps):
+                S3.value(1)
+                sleep(0.001)
+                S3.value(0)
+                sleep(0.001)
+            # Return pins to original state pins
+            D3.value(0)
+            S3.value(0)
+        case 4:
+            # set direction
+            if (direction == 'L' or direction == 'l'):
+                D4.value(1)
+            elif (direction == 'R' or direction == 'r'):
+                D4.value(0)
+
+            # Increment to steps from zero
+            for x in range(0, steps):
+                S4.value(1)
+                sleep(0.001)
+                S4.value(0)
+                sleep(0.001)
+            # Return pins to original state pins
+            D4.value(0)
+            S4.value(0)
+
 
 led.low()
-
-def motor_Drive(int mtr, int steps, char direction):
-
-    match(mtr):
-    
-    case 1:
-        #set direction
-        if(direction = 'L' OR 'l'):
-            D1.value(1)
-        else if (direction = 'R' OR 'r')
-            D1.value(0)
-        
-        #Increment to steps from zero
-        for x in range(0, steps):
-            S1.value(1)
-            sleep(0.001)
-            S1.value(0)
-            sleep(0.001)
-        #Return pins to original state pins    
-        D1.value(0)    
-        S1.value(0)    
-    case 2:
-            #set direction
-        if(direction = 'L' OR 'l'):
-            D2.value(1)
-        else if (direction = 'R' OR 'r')
-            D2.value(0)
-        
-        #Increment to steps from zero
-        for x in range(0, steps):
-            S2.value(1)
-            sleep(0.001)
-            S2.value(0)
-            sleep(0.001)
-        #Return pins to original state pins    
-        D2.value(0)    
-        S2.value(0)  
-    case 3:
-            #set direction
-        if(direction = 'L' OR 'l'):
-            D3.value(1)
-        else if (direction = 'R' OR 'r')
-            D3.value(0)
-        
-        #Increment to steps from zero
-        for x in range(0, steps):
-            S3.value(1)
-            sleep(0.001)
-            S3.value(0)
-            sleep(0.001)
-        #Return pins to original state pins    
-        D3.value(0)    
-        S3.value(0)  
-    case 4:
-            #set direction
-        if(direction = 'L' OR 'l'):
-            D4.value(1)
-        else if (direction = 'R' OR 'r')
-            D4.value(0)
-        
-        #Increment to steps from zero
-        for x in range(0, steps):
-            S4.value(1)
-            sleep(0.001)
-            S4.value(0)
-            sleep(0.001)
-        #Return pins to original state pins    
-        D4.value(0)    
-        S4.value(0)  
